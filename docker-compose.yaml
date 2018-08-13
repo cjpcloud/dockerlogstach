@@ -13,11 +13,3 @@ services:
     command: -f /opt/logstash/sample.conf
     volumes:
       - ./logstash/:/opt/logstash
-
-
-    # This is just an example.
-    # Normally you would put your own services in this file.
-    # Similar setup works on Kubernetes as well.
-    redis:
-      image: redis
-      restart: always
