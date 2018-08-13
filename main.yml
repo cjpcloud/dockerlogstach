@@ -1,0 +1,23 @@
+version: "2"
+services:
+  logspout:
+    image: bekt/logspout-logstash
+    restart: on-failure
+    environment:
+      ROUTE_URIS: logstash://172.31.0.83:5000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  logstash:
+    image: logstash:2.3
+    command: -f /opt/logstash/sample.conf
+    volumes:
+      - ./logstash/:/opt/logstash
+
+
+    # This is just an example.
+    # Normally you would put your own services in this file.
+    # Similar setup works on Kubernetes as well.
+    redis:
+      image: redis
+      restart: always
